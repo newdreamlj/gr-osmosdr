@@ -26,6 +26,7 @@
 #include "bladerf_common.h"
 
 #include "osmosdr/ranges.h"
+#include <pmt/pmt.h>
 
 class bladerf_source_c;
 
@@ -139,6 +140,12 @@ private:
 
   /* Scaling factor used when converting from int16_t to float */
   const float SCALING_FACTOR = 2048.0f;
+
+  /* Patched by Jun */
+  unsigned int ts_skip;
+  uint64_t ts_next_tag_pos, item_sent;
+  pmt::pmt_t ts_tag_key;
+  struct timeval start_tv;
 };
 
 #endif // INCLUDED_BLADERF_SOURCE_C_H
